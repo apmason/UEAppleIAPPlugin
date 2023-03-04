@@ -1,5 +1,4 @@
-// Sigil Technologies Inc.
-
+// Alex Mason
 
 #include "AsyncGetIAPProducts.h"
 #include "Engine/Engine.h"

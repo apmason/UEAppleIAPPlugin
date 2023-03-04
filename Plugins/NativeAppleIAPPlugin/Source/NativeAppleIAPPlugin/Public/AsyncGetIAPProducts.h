@@ -1,4 +1,4 @@
-// Sigil Technologies Inc.
+// Alex Mason
 
 #pragma once
 

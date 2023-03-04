@@ -73,8 +73,8 @@
 {
     self.transactionsCompletion = completion;
     
-    checkf(_cachedProducts != NULL, TEXT("Cached product is null"));
-    checkf(_cachedProducts.count > 0, TEXT("No items in cached product"));
+    checkf(_cachedProducts != NULL, TEXT("Cached product is null. Make sure you call GetProducts first to validate your products"));
+    checkf(_cachedProducts.count > 0, TEXT("Cached product is empty. Make sure you call GetProducts first to validate your products"));
     
     [self addTransactionObserverIfNeeded];
     
@@ -83,9 +83,12 @@
             SKPayment* payment = [SKPayment paymentWithProduct:product];
             check(payment != NULL);
             [[SKPaymentQueue defaultQueue]addPayment:payment];
-            GEngine->AddOnScreenDebugMessage(-1, 100.0f, FColor::Green, FString::Printf(TEXT("JUST ADDED TO QUEUE!")));
         }
     }
+
+    // TODO: Make this cleaner
+    // this handles the case of a invalid product identifier being passed in
+    self.transactionsCompletion(NULL);
 }
 
 -(void)addTransactionObserverIfNeeded
