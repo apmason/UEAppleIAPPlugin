@@ -18,8 +18,7 @@ UAsyncGetIAPProducts* UAsyncGetIAPProducts::GetIAPProducts(const TArray<FString>
 
 void UAsyncGetIAPProducts::Activate() {
     Super::Activate();
-    GEngine->AddOnScreenDebugMessage(-1, 30.0f, FColor::Red, TEXT("Activated the new node, about to let it rip!"));
-
+    
 #if PLATFORM_IOS || PLATFORM_MAC
     dispatch_async(dispatch_get_main_queue(), ^{
         NativeAppleIAPObject* AppleIAPObj = [NativeAppleIAPObject shared];

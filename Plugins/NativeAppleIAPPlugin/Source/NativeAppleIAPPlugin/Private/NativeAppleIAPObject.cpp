@@ -33,7 +33,7 @@
 
 - (void)validateProductIdentifiers:(NSArray*)productIdentifiers {
     if (!productIdentifiers || productIdentifiers.count == 0) {
-        GEngine->AddOnScreenDebugMessage(-1, 100.0f, FColor::Red, TEXT("Invalid product identifiers!"));
+        GEngine->AddOnScreenDebugMessage(-1, 100.0f, FColor::Red, TEXT("No product identifiers submitted!"));
         self.getProductsCompletion(NULL);
         self.getProductsCompletion = NULL;
         return;
@@ -54,10 +54,9 @@
     
     [_cachedProducts removeAllObjects];
     // When we receive product responses, we cache these for our own use for later.
-    // When a user wants to purchase a product, they only pass in a string that represents their product.
+    // When a user wants to purchase a product, they only pass in the product identifier.
 
     // A user requests cached products. 
-
     [_cachedProducts addObjectsFromArray:response.products];
 
     checkf(self.getProductsCompletion != NULL, TEXT("Get products completion is NULL"));
